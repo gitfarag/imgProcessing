@@ -4,8 +4,7 @@
   "description": "udacity-first-project",
   "main": "app.js",
   "scripts": {
-    "prestart": "npm run build",
-    "start": "node dist/app.js",
+    "start": "npm run build && node dist/app.js",
     "dev": "nodemon src/app.ts",
     "lint": "eslint src/**/*.{ts,json}",
     "lint:fix": "eslint src/**/*.{ts,json} --fix",
