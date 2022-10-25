@@ -1,5 +1,8 @@
 import { Router } from 'express';
-import {imgValidator,croppedValidator} from './../../validator/image.validator';
+import {
+  imgValidator,
+  croppedValidator,
+} from './../../validator/image.validator';
 const imgRouter = Router();
 
 // img original validator
