@@ -1,5 +1,7 @@
 # imgProcessing
 
+github repo https://github.com/gitfarag/imgProcessing.git
+
 
 A quick tutorial to crop image and save it
 
@@ -23,19 +25,19 @@ A quick tutorial to crop image and save it
 npm install
 ```
 
-### Run Server (Build & Start)
+###  {Build & Start}
 
 ```
 npm start
 ```
 
-### Development (Auto-Reload)
+### Development {nodemon}
 
 ```
 npm run dev
 ```
 
-### Testing
+### Test using jasmine
 
 ```
 npm run test
