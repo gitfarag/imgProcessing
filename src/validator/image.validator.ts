@@ -3,14 +3,21 @@ import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
 
-//--------- Rememer---------//
+//----------Rememer---------//
 //    image name with the   //
 // extention ex :(img1.jpg) //
 //--------------------------//
 
-const imgValidator = (req: Request, res: Response,): void => {
+const imgValidator = (req: Request, res: Response): void => {
   const { name } = req.params;
-  const filePath = path.join(__dirname,'..','..','assets','images',`${name}`);
+  const filePath = path.join(
+    __dirname,
+    '..',
+    '..',
+    'assets',
+    'images',
+    `${name}`
+  );
   const getFile = fs.existsSync(`${filePath}`);
   if (getFile) {
     const file = fs.readFileSync(`${filePath}`);
@@ -49,11 +56,18 @@ const imgValidator = (req: Request, res: Response,): void => {
     </html>`);
   }
 };
-  const croppedValidator = (req:Request, res:Response):void => {
+const croppedValidator = (req: Request, res: Response): void => {
   const name = req.params.name;
   const width = req.params.width;
-  const height = req.params.height ;
-  const filePath = path.join(__dirname,'..','..','assets','cropped',`${width}${height}${name}`);
+  const height = req.params.height;
+  const filePath = path.join(
+    __dirname,
+    '..',
+    '..',
+    'assets',
+    'cropped',
+    `${width}${height}${name}`
+  );
   const getFile = fs.existsSync(`${filePath}`);
 
   if (getFile) {
@@ -88,17 +102,23 @@ const imgValidator = (req: Request, res: Response,): void => {
         <h2 >Image already existed</h2>
     </body>
     </html>`);
-  } else  {
-    const originalImg=path.join(__dirname,'..','..','assets','images',`${name}`);
-    console.log(originalImg)
-    console.log(width,height)
+  } else {
+    const originalImg = path.join(
+      __dirname,
+      '..',
+      '..',
+      'assets',
+      'images',
+      `${name}`
+    );
+    console.log(originalImg);
+    console.log(width, height);
     sharp(originalImg)
-    .resize(parseInt(width),parseInt(height))
-    .toFile(`./assets/cropped/${width}${height}${name}`)
-    
-    res.status(200).send("crpping img")
-    console.log(Date.now())
-  } 
+      .resize(parseInt(width), parseInt(height))
+      .toFile(`./assets/cropped/${width}${height}${name}`);
 
+    res.status(201).send('img cropped successfully');
+    console.log(Date.now());
+  }
 };
-export  {imgValidator,croppedValidator};
+export { imgValidator, croppedValidator };

@@ -14,7 +14,7 @@ app.use(cors(), helmet());
 // static-files
 app.use(express.static('frontend'));
 
-// Routes
+// Routes and Endpoint
 
 app.use('/api-rest', routes);
 
