@@ -4,11 +4,18 @@ import path from 'path';
 
 const imgValidator = (req: Request, res: Response, next: NextFunction): any => {
   const { name } = req.params;
-  const filePath = path.join(__dirname, '..', '..', 'assets', 'images');
-  const getFile = fs.existsSync(`${filePath}/${name}`);
+  const filePath = path.join(
+    __dirname,
+    '..',
+    '..',
+    'assets',
+    'images',
+    `${name}`
+  );
+  const getFile = fs.existsSync(filePath);
   if (getFile) {
-    const file = fs.readFileSync(`${filePath}/${name}`)
-    res.send(file)
+    const file = fs.readFileSync(`${filePath}`);
+    res.send(file);
   } else {
     res.status(404).send(`<!DOCTYPE html>
     <html lang="en">
@@ -42,17 +49,15 @@ const imgValidator = (req: Request, res: Response, next: NextFunction): any => {
     </body>
     </html>`);
   }
-  
-
 };
-// const croppedValidator = (
-//   req: Request,
-//   res: Response,
-//   next: NextFunction
-// ): any => {
-//   const { name } = req.params;
-//   const filePath = path.join(__dirname, '..', '..', 'assets', 'images');
-//   const getFile = fs.existsSync(`${filePath}/${name}`);
-//   getFile ? next() : '';
-// };
-export default imgValidator;
+const croppedValidator = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): any => {
+  const { name } = req.params;
+  const filePath = path.join(__dirname, '..', '..', 'assets', 'images');
+  const getFile = fs.existsSync(`${filePath}/${name}`);
+  getFile ? next() : '';
+};
+export  {imgValidator,croppedValidator};
