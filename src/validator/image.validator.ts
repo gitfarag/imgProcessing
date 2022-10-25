@@ -3,6 +3,11 @@ import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
 
+//--------- Rememer---------//
+//    image name with the   //
+// extention ex :(img1.jpg) //
+//--------------------------//
+
 const imgValidator = (req: Request, res: Response,): void => {
   const { name } = req.params;
   const filePath = path.join(__dirname,'..','..','assets','images',`${name}`);

@@ -14,6 +14,8 @@ app.use(cors(), helmet());
 // static-files
 app.use(express.static('frontend'));
 
+// Routes
+
 app.use('/api-rest', routes);
 
 // 404 eroor page
