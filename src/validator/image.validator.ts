@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
@@ -8,7 +8,7 @@ import sharp from 'sharp';
 // extention ex :(img1.jpg) //
 //--------------------------//
 
-const imgValidator = (req: Request, res: Response): void => {
+const imgValidator = (req: Request, res: Response, next:NextFunction): void => {
   const { name } = req.params;
   const filePath = path.join(
     __dirname,
@@ -18,43 +18,13 @@ const imgValidator = (req: Request, res: Response): void => {
     'images',
     `${name}`
   );
-  const getFile = fs.existsSync(`${filePath}`);
-  if (getFile) {
+  try {
     const file = fs.readFileSync(`${filePath}`);
-    res.status(200).send(file);
-  } else {
-    res.status(404).send(`<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Udacity Advanced</title>
-        <style>
-            *{
-                padding: 0;
-                margin: 0;
-            }
-            body{
-                font-size: 16px;
-                height: 100vh;
-                background: #e5e5e5;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-            }
-            h1{
-                color: #02b3e4;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Udacity Advanced track</h1>
-        <h2 >Image Not Found</h2>
-    </body>
-    </html>`);
-  }
+    next()
+  } catch (error) {
+    console.log("file not found")
+    res.send(error)
+  }  
 };
 const croppedValidator = (req: Request, res: Response): void => {
   const name = req.params.name;

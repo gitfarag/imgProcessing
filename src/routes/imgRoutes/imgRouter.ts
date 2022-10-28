@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import getImageByName from '../../controller/getImageByName';
 import {
   imgValidator,
   croppedValidator,
@@ -6,7 +7,7 @@ import {
 const imgRouter = Router();
 
 // img original validator
-imgRouter.get('/:name', imgValidator);
+imgRouter.get('/:name', imgValidator, getImageByName);
 
 // cropped image validator
 imgRouter.get('/:width/:height/:name', croppedValidator);
