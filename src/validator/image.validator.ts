@@ -1,14 +1,17 @@
 import { Request, Response, NextFunction } from 'express';
 import fs from 'fs';
 import path from 'path';
-import sharp from 'sharp';
 
 //----------Rememer---------//
 //    image name with the   //
 // extention ex :(img1.jpg) //
 //--------------------------//
 
-const imgValidator = (req: Request, res: Response, next:NextFunction): void => {
+const imgValidator = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void => {
   const { name } = req.params;
   const filePath = path.join(
     __dirname,
@@ -20,75 +23,11 @@ const imgValidator = (req: Request, res: Response, next:NextFunction): void => {
   );
   try {
     const file = fs.readFileSync(`${filePath}`);
-    next()
+    next();
   } catch (error) {
-    console.log("file not found")
-    res.send(error)
-  }  
-};
-const croppedValidator = (req: Request, res: Response): void => {
-  const name = req.params.name;
-  const width = req.params.width;
-  const height = req.params.height;
-  const filePath = path.join(
-    __dirname,
-    '..',
-    '..',
-    'assets',
-    'cropped',
-    `${width}${height}${name}`
-  );
-  const getFile = fs.existsSync(`${filePath}`);
-
-  if (getFile) {
-    res.status(500).send(`<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Udacity Advanced</title>
-        <style>
-            *{
-                padding: 0;
-                margin: 0;
-            }
-            body{
-                font-size: 16px;
-                height: 100vh;
-                background: #e5e5e5;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-            }
-            h1{
-                color: #02b3e4;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Udacity Advanced track</h1>
-        <h2 >Image already existed</h2>
-    </body>
-    </html>`);
-  } else {
-    const originalImg = path.join(
-      __dirname,
-      '..',
-      '..',
-      'assets',
-      'images',
-      `${name}`
-    );
-    console.log(originalImg);
-    console.log(width, height);
-    sharp(originalImg)
-      .resize(parseInt(width), parseInt(height))
-      .toFile(`./assets/cropped/${width}${height}${name}`);
-
-    res.status(201).send('img cropped successfully');
-    console.log(Date.now());
+    console.log('file not found');
+    res.send(error);
   }
 };
-export { imgValidator, croppedValidator };
+
+export { imgValidator };

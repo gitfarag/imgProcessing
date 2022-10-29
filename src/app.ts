@@ -3,7 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 import routes from './routes';
-import logger from './middlewares/logger'
+import logger from './middlewares/logger';
 
 dotenv.config();
 const port = process.env.APP_PORT;
@@ -16,11 +16,9 @@ app.use(cors(), helmet(), logger);
 // static-files
 app.use(express.static('frontend'));
 
-
 // Routes and Endpoint
 
 app.use('/api-rest', routes);
-
 
 // app.use((req, res) => {
 // res.send("hello").status(404)
