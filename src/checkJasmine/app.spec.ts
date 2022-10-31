@@ -1,5 +1,6 @@
 import request from 'supertest';
 import app from '../app';
+import entryValidator from './../validator/entryValidator';
 
 describe('server runs', () => {
   it('app is defined', () => {
@@ -17,13 +18,20 @@ describe('server runs', () => {
     request(app)
       .get('/any')
       .expect(404)
-      .end((error) => (error && done.fail(error) || done()));
+      .end((error) => (error && done.fail(error)) || done());
   });
 
-  it('status 500 on existed image route ', (done) => {
+  it('status 200 on existed image route ', (done) => {
     request(app)
-      .get('/api-rest/images/200/200/img1.jpg')
-      .expect(500)
+      .get('/api-rest/images/imageName.jpg')
+      .expect(200)
       .end((error) => (error ? done.fail(error) : done()));
+  });
+
+  // imgProcessing test
+
+  it('validating my scale entry', async () => {
+    const validated = await entryValidator('100', '100');
+    expect(validated).toBe('good entry');
   });
 });

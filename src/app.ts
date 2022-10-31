@@ -20,10 +20,6 @@ app.use(express.static('frontend'));
 
 app.use('/api-rest', routes);
 
-// app.use((req, res) => {
-// res.send("hello").status(404)
-// });
-
 // start server
 app.listen(port, () => {
   console.log(`${name} is running on: http://localhost:${port}`);

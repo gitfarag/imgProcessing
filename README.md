@@ -53,7 +53,13 @@ npm run test
 
 
 ```
-/api-rest/images/{width}/{height}/image1.jpg
+/api-rest/images/scale/imgName.jpg?w=100&h=100
 ```
 ## important
-always remeber to write the file extention ex:(jpg)
+```````
+always remeber to write the image extention ex:(jpg)
+follwed by the query parameter w & h
+```````
+```````
+value of w wil be the width
+value of h will be the height

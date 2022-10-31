@@ -12,7 +12,7 @@ const imgValidator = (
   res: Response,
   next: NextFunction
 ): void => {
-  const { name } = req.params;
+  const name = req.params.name;
   const filePath = path.join(
     __dirname,
     '..',
@@ -22,10 +22,10 @@ const imgValidator = (
     `${name}`
   );
   try {
-    const file = fs.readFileSync(`${filePath}`);
+    fs.readFileSync(`${filePath}`);
+
     next();
   } catch (error) {
-    console.log('file not found');
     res.send(error);
   }
 };
