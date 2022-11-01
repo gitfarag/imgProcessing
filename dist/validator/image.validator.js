@@ -6,10 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.imgValidator = void 0;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
-//----------Rememer---------//
-//    image name with the   //
-// extention ex :(img1.jpg) //
-//--------------------------//
 const imgValidator = (req, res, next) => {
     const name = req.params.name;
     const filePath = path_1.default.join(__dirname, '..', '..', 'assets', 'images', `${name}`);
