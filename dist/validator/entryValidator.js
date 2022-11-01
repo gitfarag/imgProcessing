@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const entryValidate = (width, height) => __awaiter(void 0, void 0, void 0, function* () {
     const parsewidth = parseInt(width);
     const parseheight = parseInt(height);
-    if (isNaN(parsewidth) || parsewidth < 0)
+    if (isNaN(parsewidth) || parsewidth <= 0)
         return 'invalid width entry';
-    else if (isNaN(parseheight) || parseheight < 0) {
+    else if (isNaN(parseheight) || parseheight <= 0) {
         return 'invalid height entry';
     }
     else {

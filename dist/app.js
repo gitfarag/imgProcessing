@@ -19,6 +19,8 @@ app.use((0, cors_1.default)(), (0, helmet_1.default)(), logger_1.default);
 app.use(express_1.default.static('frontend'));
 // Routes and Endpoint
 app.use('/api-rest', routes_1.default);
+// static to render the image in the browser
+app.use(express_1.default.static(__dirname + '/../assets'));
 // start server
 app.listen(port, () => {
     console.log(`${name} is running on: http://localhost:${port}`);

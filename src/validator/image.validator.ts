@@ -2,10 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import fs from 'fs';
 import path from 'path';
 
-//----------Rememer---------//
-//    image name with the   //
-// extention ex :(img1.jpg) //
-//--------------------------//
 
 const imgValidator = (
   req: Request,
@@ -22,11 +18,10 @@ const imgValidator = (
     `${name}`
   );
   try {
-    fs.readFileSync(`${filePath}`);
-
+    fs.readFileSync(`${filePath}.jpg`);
     next();
   } catch (error) {
-    res.send(error);
+    res.send("images not exists");
   }
 };
 

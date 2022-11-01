@@ -4,7 +4,7 @@ const logger = (req: Request, res: Response, next: NextFunction): void => {
   // start timer
   const start = Date.now();
   console.log(
-    `:: :${req.method} ${req.originalUrl}:: Started ${new Date(
+    `:: ${req.method} ${req.originalUrl}:: Started ${new Date(
       start
     ).toLocaleString()}]`
   );
@@ -13,7 +13,8 @@ const logger = (req: Request, res: Response, next: NextFunction): void => {
     const timeCost = Date.now() - start; 
     // display time cost
     console.log(
-      `:: ${req.method} ${req.originalUrl} ${res.statusCode} ::cost ${timeCost}ms]`
+      `      :: ${req.method} ${req.originalUrl} ${res.statusCode} ::cost ${timeCost}ms]
+      ----------------------------------------------------------`
     );
   });
 

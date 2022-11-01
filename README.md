@@ -47,19 +47,20 @@ npm run test
 ### end Point to download the image
 
 ```
-/api-rest/images/image1.jpg
+/api-rest/images/oops
 ```
 ### end Point to crop the image
 
 
 ```
-/api-rest/images/scale/imgName.jpg?w=100&h=100
+/api-rest/images/scale/oops?w=100&h=100
 ```
 ## important
 ```````
-always remeber to write the image extention ex:(jpg)
-follwed by the query parameter w & h
+please dont write the image extention in the url
+just write the image name ex: oops
 ```````
 ```````
 value of w wil be the width
 value of h will be the height
+```````

@@ -15,6 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const app_1 = __importDefault(require("../app"));
 const entryValidator_1 = __importDefault(require("./../validator/entryValidator"));
+const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
+const sharp_1 = __importDefault(require("sharp"));
 describe('server runs', () => {
     it('app is defined', () => {
         expect(app_1.default).toBeDefined();
@@ -41,5 +44,15 @@ describe('server runs', () => {
     it('validating my scale entry', () => __awaiter(void 0, void 0, void 0, function* () {
         const validated = yield (0, entryValidator_1.default)('100', '100');
         expect(validated).toBe('good entry');
+    }));
+    // sharp test 
+    it('image processing using sharp', () => __awaiter(void 0, void 0, void 0, function* () {
+        const basePath = path_1.default.join(__dirname, '..', '..', 'assets', 'images', `oops.jpg`);
+        const croppedpath = path_1.default.join(__dirname, '..', '..', 'assets', 'cropped', `resized.jpg`);
+        yield (0, sharp_1.default)(basePath)
+            .resize(100, 100)
+            .toFile('./assets/cropped/resized.jpg');
+        const exist = fs_1.default.existsSync(croppedpath);
+        expect(exist).toBeTrue();
     }));
 });

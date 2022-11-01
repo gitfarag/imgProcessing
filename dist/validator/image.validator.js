@@ -14,11 +14,11 @@ const imgValidator = (req, res, next) => {
     const name = req.params.name;
     const filePath = path_1.default.join(__dirname, '..', '..', 'assets', 'images', `${name}`);
     try {
-        fs_1.default.readFileSync(`${filePath}`);
+        fs_1.default.readFileSync(`${filePath}.jpg`);
         next();
     }
     catch (error) {
-        res.send(error);
+        res.send("images not exists");
     }
 };
 exports.imgValidator = imgValidator;
