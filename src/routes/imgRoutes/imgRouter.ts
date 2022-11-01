@@ -8,6 +8,6 @@ const imgRouter = Router();
 imgRouter.get('/:name', imgValidator, getImageByName);
 
 // cropped image validator
-imgRouter.get('/scale/:name',exist, imgValidator, getCroppedByName);
+imgRouter.get('/scale/:name', exist, imgValidator, getCroppedByName);
 
 export default imgRouter;

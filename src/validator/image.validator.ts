@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import fs from 'fs';
 import path from 'path';
 
-
 const imgValidator = (
   req: Request,
   res: Response,
@@ -21,7 +20,7 @@ const imgValidator = (
     fs.readFileSync(`${filePath}.jpg`);
     next();
   } catch (error) {
-    res.send("images not exists");
+    res.send('images not exists');
   }
 };
 

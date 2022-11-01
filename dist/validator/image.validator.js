@@ -14,7 +14,7 @@ const imgValidator = (req, res, next) => {
         next();
     }
     catch (error) {
-        res.send("images not exists");
+        res.send('images not exists');
     }
 };
 exports.imgValidator = imgValidator;

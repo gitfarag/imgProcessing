@@ -45,7 +45,7 @@ describe('server runs', () => {
         const validated = yield (0, entryValidator_1.default)('100', '100');
         expect(validated).toBe('good entry');
     }));
-    // sharp test 
+    // sharp test
     it('image processing using sharp', () => __awaiter(void 0, void 0, void 0, function* () {
         const basePath = path_1.default.join(__dirname, '..', '..', 'assets', 'images', `oops.jpg`);
         const croppedpath = path_1.default.join(__dirname, '..', '..', 'assets', 'cropped', `resized.jpg`);

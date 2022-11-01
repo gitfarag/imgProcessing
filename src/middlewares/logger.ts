@@ -10,7 +10,7 @@ const logger = (req: Request, res: Response, next: NextFunction): void => {
   );
   res.on('finish', () => {
     // calculate time cost
-    const timeCost = Date.now() - start; 
+    const timeCost = Date.now() - start;
     // display time cost
     console.log(
       `      :: ${req.method} ${req.originalUrl} ${res.statusCode} ::cost ${timeCost}ms]

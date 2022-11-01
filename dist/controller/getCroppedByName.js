@@ -21,13 +21,15 @@ const getCroppedByName = (req, res) => __awaiter(void 0, void 0, void 0, functio
     const { name } = req.params;
     const basePath = path_1.default.join(__dirname, '..', '..', 'assets', 'images', `${name}.jpg`);
     const validated = yield (0, entryValidator_1.default)(width, height);
-    if (validated == "good entry") {
+    if (validated == 'good entry') {
         yield (0, sharp_1.default)(basePath)
             .resize(parseInt(width), parseInt(height))
             .jpeg()
             .toFile(`./assets/cropped/${width}-${height}-${name}.jpg`);
         // console.log("cropped//////////")
-        res.send(`<img class="logo" src="/cropped/${width}-${height}-${name}.jpg" alt="My_Logo">`).status(200);
+        res
+            .send(`<img class="logo" src="/cropped/${width}-${height}-${name}.jpg" alt="My_Logo">`)
+            .status(200);
     }
     else {
         res.send(validated).status(500);

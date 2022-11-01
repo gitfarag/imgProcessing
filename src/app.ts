@@ -21,7 +21,7 @@ app.use(express.static('frontend'));
 app.use('/api-rest', routes);
 
 // static to render the image in the browser
-app.use(express.static(__dirname+'/../assets'));
+app.use(express.static(__dirname + '/../assets'));
 
 // start server
 app.listen(port, () => {

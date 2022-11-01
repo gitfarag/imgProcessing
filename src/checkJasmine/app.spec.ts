@@ -1,9 +1,9 @@
 import request from 'supertest';
 import app from '../app';
 import entryValidator from './../validator/entryValidator';
-import fs from 'fs'
-import path from 'path'
-import sharp from 'sharp'
+import fs from 'fs';
+import path from 'path';
+import sharp from 'sharp';
 
 describe('server runs', () => {
   it('app is defined', () => {
@@ -38,7 +38,7 @@ describe('server runs', () => {
     expect(validated).toBe('good entry');
   });
 
-  // sharp test 
+  // sharp test
   it('image processing using sharp', async () => {
     const basePath: string = path.join(
       __dirname,
@@ -48,7 +48,7 @@ describe('server runs', () => {
       'images',
       `oops.jpg`
     );
-    const croppedpath:string=path.join(
+    const croppedpath: string = path.join(
       __dirname,
       '..',
       '..',
@@ -57,9 +57,9 @@ describe('server runs', () => {
       `resized.jpg`
     );
     await sharp(basePath)
-    .resize(100, 100)
-    .toFile('./assets/cropped/resized.jpg')
-    const exist = fs.existsSync(croppedpath)
+      .resize(100, 100)
+      .toFile('./assets/cropped/resized.jpg');
+    const exist = fs.existsSync(croppedpath);
     expect(exist).toBeTrue();
   });
 });
